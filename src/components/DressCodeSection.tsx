@@ -35,7 +35,7 @@ export const DressCodeSection: React.FC = () => {
           </h3>
 
           <div className="inline-block clay-pill px-6 py-2 bg-gradient-to-r from-amber-100 to-amber-200 text-amber-950 font-bold text-base sm:text-lg mb-4 border border-amber-300">
-            Formal / Elegante
+            Lo que Gustes 
           </div>
 
           <p className="text-stone-600 max-w-lg mx-auto text-sm sm:text-base leading-relaxed mb-6 font-medium">

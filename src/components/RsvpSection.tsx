@@ -25,7 +25,7 @@ export const RsvpSection: React.FC = () => {
   
   // Host WhatsApp number (can be edited by user or set to a default Mexico phone)
   const [hostWhatsApp, setHostWhatsApp] = useState<string>(() => {
-    return localStorage.getItem('rsvp_host_whatsapp') || '525500000000';
+    return localStorage.getItem('rsvp_host_whatsapp') || '7121330734';
   });
   const [showConfigNumber, setShowConfigNumber] = useState(false);
 
