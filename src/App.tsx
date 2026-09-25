@@ -7,6 +7,7 @@ import { ReceptionSection } from './components/ReceptionSection';
 import { RsvpSection } from './components/RsvpSection';
 import { GallerySection } from './components/GallerySection';
 import { FamilyInvitationSection } from './components/FamilyInvitationSection';
+import { SharedAlbumSection } from './components/SharedAlbumSection';
 import { FinalMessageSection } from './components/FinalMessageSection';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
 import { FloatingParticles } from './components/FloatingParticles';
@@ -69,6 +70,9 @@ export function App() {
 
         {/* Family Invitation Section */}
         <FamilyInvitationSection />
+
+        {/* Shared Photo Album (Google Drive) */}
+        <SharedAlbumSection />
 
         {/* Interactive RSVP Form & WhatsApp Connector */}
         <RsvpSection />

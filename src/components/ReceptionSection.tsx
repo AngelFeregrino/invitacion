@@ -19,7 +19,7 @@ export const ReceptionSection: React.FC = () => {
   const [copiedIglesia, setCopiedIglesia] = useState(false);
   const [activeMap, setActiveMap] = useState<'salon' | 'iglesia'>('salon');
 
-  const salonMapsUrl = "https://maps.app.goo.gl/TGQhyLfuj1c8MRQWA";
+  const salonMapsUrl = "https://maps.app.goo.gl/VNqCgQ3qCwowyAJi9";
   const churchMapsUrl = "https://maps.app.goo.gl/6LK7BxBz1ih4DeG98";
 
   const handleCopySalon = () => {
@@ -360,7 +360,7 @@ export const ReceptionSection: React.FC = () => {
                   <iframe
                     key="map-salon"
                     title="Mapa Salón y Jardín Anturios"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.662283995874!2d-99.1824968!3d19.4264627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzM1LjMiTiA5OcKwMTAnNTcuMCJX!5e0!3m2!1ses!2smx!4v1650000000000!5m2!1ses!2smx"
+                    src="https://maps.google.com/maps?q=Anturios+Sal%C3%B3n+y+Jard%C3%ADn,+Toluca&t=&z=16&ie=UTF8&iwloc=&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
