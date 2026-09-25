@@ -1,8 +1,8 @@
+@import './styles/claymorphism.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import './styles/claymorphism.css';
 
 /* Base Global Styles */
 *, *::before, *::after {
@@ -14,19 +14,19 @@
 html {
   scroll-behavior: smooth;
   font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  color: #2C2623;
-  background-color: #FAF6F0;
+  color: #3b1a2a;
+  background-color: #FFF5F8;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #FAF6F0;
+  background-color: #FFF5F8;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(229, 192, 123, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(197, 155, 39, 0.08) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(245, 235, 220, 0.5) 0px, transparent 70%);
+    radial-gradient(at 0% 0%, rgba(249, 168, 212, 0.18) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(253, 242, 248, 0.6) 0px, transparent 70%);
   background-attachment: fixed;
 }
 
@@ -55,7 +55,7 @@ body {
   padding: 0 1.25rem;
 }
 
-/* Golden Ornamental Dividers */
+/* Rose Ornamental Dividers */
 .ornament-divider {
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@ body {
   gap: 1rem;
   margin: 1.5rem auto;
   max-width: 340px;
-  color: #C59B27;
+  color: #db2777;
 }
 
 .ornament-divider::before,
@@ -71,7 +71,7 @@ body {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(197, 155, 39, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.5), transparent);
 }
 
 /* Custom Scrollbar */
@@ -80,16 +80,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF6F0;
+  background: #FFF5F8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E5C07B;
+  background: #f9a8d4;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C59B27;
+  background: #ec4899;
 }
 
 /* Card Ribbon / Corner Accents */
@@ -99,8 +99,8 @@ body {
   right: 12px;
   width: 32px;
   height: 32px;
-  border-top: 2px solid rgba(197, 155, 39, 0.5);
-  border-right: 2px solid rgba(197, 155, 39, 0.5);
+  border-top: 2px solid rgba(236, 72, 153, 0.4);
+  border-right: 2px solid rgba(236, 72, 153, 0.4);
   border-top-right-radius: 8px;
   pointer-events: none;
 }
@@ -111,18 +111,18 @@ body {
   left: 12px;
   width: 32px;
   height: 32px;
-  border-bottom: 2px solid rgba(197, 155, 39, 0.5);
-  border-left: 2px solid rgba(197, 155, 39, 0.5);
+  border-bottom: 2px solid rgba(236, 72, 153, 0.4);
+  border-left: 2px solid rgba(236, 72, 153, 0.4);
   border-bottom-left-radius: 8px;
   pointer-events: none;
 }
 
 /* Interactive Digital Ticket Badge */
 .vip-pass-card {
-  background: linear-gradient(135deg, #1C1917 0%, #2A241F 100%);
-  color: #FAF6F0;
+  background: linear-gradient(135deg, #3b0a2e 0%, #580d44 100%);
+  color: #FFF5F8;
   border-radius: 24px;
-  border: 1.5px solid #C59B27;
+  border: 1.5px solid #db2777;
   position: relative;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
@@ -135,7 +135,7 @@ body {
   left: -100%;
   width: 200%;
   height: 100%;
-  background: linear-gradient(60deg, transparent 40%, rgba(229, 192, 123, 0.15) 50%, transparent 60%);
+  background: linear-gradient(60deg, transparent 40%, rgba(249, 168, 212, 0.18) 50%, transparent 60%);
   animation: shineTicket 6s infinite;
 }
 
@@ -162,7 +162,7 @@ body {
 
 .sound-wave span {
   width: 3px;
-  background: #C59B27;
+  background: #ec4899;
   border-radius: 2px;
   animation: soundWaveAnim 1.2s ease-in-out infinite alternate;
 }

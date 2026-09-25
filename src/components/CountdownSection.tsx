@@ -57,13 +57,13 @@ export const CountdownSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="clay-card p-6 sm:p-10 text-center relative overflow-hidden"
         >
-          {/* Subtle gold decoration top */}
-          <div className="flex items-center justify-center gap-2 text-amber-700 font-semibold text-xs uppercase tracking-widest mb-2">
-            <Clock className="w-4 h-4 text-amber-600 animate-pulse" />
+          {/* Subtle rose decoration top */}
+          <div className="flex items-center justify-center gap-2 text-pink-700 font-semibold text-xs uppercase tracking-widest mb-2">
+            <Clock className="w-4 h-4 text-pink-500 animate-pulse" />
             <span>Falta muy poco para celebrar</span>
           </div>
 
-          <h2 className="font-serif-luxury text-3xl sm:text-4xl font-bold text-amber-950 mb-2">
+          <h2 className="font-serif-luxury text-3xl sm:text-4xl font-bold text-pink-950 mb-2">
             Cuenta Regresiva
           </h2>
 
@@ -82,10 +82,10 @@ export const CountdownSection: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="clay-card-inset p-4 sm:p-5 flex flex-col items-center justify-center rounded-2xl"
               >
-                <div className="font-serif-luxury text-3xl sm:text-5xl font-extrabold text-amber-900 leading-none">
+                <div className="font-serif-luxury text-3xl sm:text-5xl font-extrabold text-pink-900 leading-none">
                   {String(unit.value).padStart(2, '0')}
                 </div>
-                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-amber-700/80 mt-2">
+                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-pink-700/80 mt-2">
                   {unit.label}
                 </div>
               </motion.div>
@@ -100,7 +100,7 @@ export const CountdownSection: React.FC = () => {
               rel="noopener noreferrer"
               className="clay-btn clay-btn-white text-xs sm:text-sm py-2.5 px-5"
             >
-              <CalendarPlus className="w-4 h-4 text-amber-700" />
+              <CalendarPlus className="w-4 h-4 text-pink-600" />
               <span>Guardar en Google Calendar</span>
             </a>
 
@@ -109,7 +109,7 @@ export const CountdownSection: React.FC = () => {
               className="clay-btn clay-btn-white text-xs sm:text-sm py-2.5 px-5"
               title="Descargar archivo para Apple Calendar, Outlook o iCal"
             >
-              <Download className="w-4 h-4 text-amber-700" />
+              <Download className="w-4 h-4 text-pink-600" />
               <span>Descargar iCal / Apple (.ics)</span>
             </button>
           </div>

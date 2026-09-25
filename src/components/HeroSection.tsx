@@ -18,7 +18,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         className="absolute inset-0 bg-cover bg-center opacity-30 sm:opacity-40 mix-blend-multiply"
         style={{ backgroundImage: 'url(/images/hero_bg.jpg)' }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FAF6F0]/60 via-[#FAF6F0]/40 to-[#FAF6F0]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FFF5F8]/60 via-[#FFF5F8]/40 to-[#FFF5F8]" />
 
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
         {/* Top Celebration Pill */}
@@ -26,13 +26,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="clay-pill px-5 py-2 mb-6 inline-flex items-center gap-2 border border-amber-300/60"
+          className="clay-pill px-5 py-2 mb-6 inline-flex items-center gap-2 border border-pink-300/60"
         >
-          <Sparkles className="w-4 h-4 text-amber-600 animate-spin" />
-          <span className="text-xs sm:text-sm font-semibold tracking-widest text-amber-900 uppercase">
+          <Sparkles className="w-4 h-4 text-pink-500 animate-spin" />
+          <span className="text-xs sm:text-sm font-semibold tracking-widest text-pink-900 uppercase">
             Gran Celebración de Jubileo
           </span>
-          <Sparkles className="w-4 h-4 text-amber-600 animate-spin" />
+          <Sparkles className="w-4 h-4 text-pink-500 animate-spin" />
         </motion.div>
 
         {/* Grand Script Header */}
@@ -43,14 +43,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="mb-2"
         >
           <span className="text-sm sm:text-base tracking-[0.3em] uppercase text-stone-600 font-medium block mb-2">
-            Te invito con todo mi amor a celebrar
+            Te invito con todo mi cariño a celebrar
           </span>
           
-          <h1 className="font-serif-luxury text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-amber-950 leading-none">
+          <h1 className="font-serif-luxury text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-pink-950 leading-none">
             Mis 60 Años
           </h1>
 
-          <div className="font-script text-5xl sm:text-7xl md:text-8xl text-amber-700 font-bold my-2 py-1 leading-tight filter drop-shadow-sm">
+          <div className="font-script text-5xl sm:text-7xl md:text-8xl text-pink-700 font-bold my-2 py-1 leading-tight filter drop-shadow-sm">
             Lety Feregrino
           </div>
         </motion.div>
@@ -77,25 +77,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           transition={{ duration: 0.8, delay: 0.65 }}
           className="clay-card-gold px-6 py-4 sm:px-8 sm:py-5 mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 max-w-xl w-full"
         >
-          <div className="flex items-center gap-3 text-amber-950">
-            <div className="w-10 h-10 rounded-full bg-amber-200/60 flex items-center justify-center text-amber-800 shrink-0">
+          <div className="flex items-center gap-3 text-pink-950">
+            <div className="w-10 h-10 rounded-full bg-pink-200/60 flex items-center justify-center text-pink-800 shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div className="text-left">
-              <div className="text-xs uppercase tracking-wider text-amber-800/80 font-bold">Fecha</div>
-              <div className="font-bold text-sm sm:text-base text-amber-950">Sábado 5 de Diciembre, 2026</div>
+              <div className="text-xs uppercase tracking-wider text-pink-800/80 font-bold">Fecha</div>
+              <div className="font-bold text-sm sm:text-base text-pink-950">Sábado 5 de Diciembre, 2026</div>
             </div>
           </div>
 
-          <div className="hidden sm:block w-px h-10 bg-amber-300/60" />
+          <div className="hidden sm:block w-px h-10 bg-pink-300/60" />
 
-          <div className="flex items-center gap-3 text-amber-950">
-            <div className="w-10 h-10 rounded-full bg-amber-200/60 flex items-center justify-center text-amber-800 shrink-0">
+          <div className="flex items-center gap-3 text-pink-950">
+            <div className="w-10 h-10 rounded-full bg-pink-200/60 flex items-center justify-center text-pink-800 shrink-0">
               <MapPin className="w-5 h-5" />
             </div>
             <div className="text-left">
-              <div className="text-xs uppercase tracking-wider text-amber-800/80 font-bold">Lugar</div>
-              <div className="font-bold text-sm sm:text-base text-amber-950">Salón & Jardín Anturios</div>
+              <div className="text-xs uppercase tracking-wider text-pink-800/80 font-bold">Lugar</div>
+              <div className="font-bold text-sm sm:text-base text-pink-950">Salón & Jardín Anturios</div>
             </div>
           </div>
         </motion.div>
@@ -119,7 +119,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             onClick={onScrollToReception}
             className="clay-btn clay-btn-white text-base px-7 py-3.5"
           >
-            <MapPin className="w-5 h-5 text-amber-700" />
+            <MapPin className="w-5 h-5 text-pink-600" />
             <span>Ver Recepción & Mapa</span>
           </button>
         </motion.div>
@@ -131,8 +131,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="mt-12 text-stone-400 flex flex-col items-center gap-1 cursor-pointer"
           onClick={onScrollToReception}
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-amber-800/60">Desliza para ver más</span>
-          <ChevronDown className="w-5 h-5 text-amber-700/60" />
+          <span className="text-xs font-semibold uppercase tracking-widest text-pink-800/60">Desliza para ver más</span>
+          <ChevronDown className="w-5 h-5 text-pink-700/60" />
         </motion.div>
       </div>
     </section>

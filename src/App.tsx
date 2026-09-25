@@ -4,13 +4,13 @@ import { HeroSection } from './components/HeroSection';
 import { CountdownSection } from './components/CountdownSection';
 import { HeartfeltMessage } from './components/HeartfeltMessage';
 import { ReceptionSection } from './components/ReceptionSection';
-import { DressCodeSection } from './components/DressCodeSection';
-import { GiftsSection } from './components/GiftsSection';
 import { RsvpSection } from './components/RsvpSection';
 import { GallerySection } from './components/GallerySection';
+import { FamilyInvitationSection } from './components/FamilyInvitationSection';
 import { FinalMessageSection } from './components/FinalMessageSection';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
 import { FloatingParticles } from './components/FloatingParticles';
+import { FloralBackground } from './components/FloralBackground';
 
 export function App() {
   const [musicStarted, setMusicStarted] = useState(false);
@@ -34,8 +34,11 @@ export function App() {
   };
 
   return (
-    <div className="relative min-h-screen text-stone-800 selection:bg-amber-200 selection:text-amber-950">
-      {/* Background Floating Gold Sparkles Canvas */}
+    <div className="relative min-h-screen text-stone-800 selection:bg-pink-200 selection:text-pink-950">
+      {/* Decorative floral rose background */}
+      <FloralBackground />
+
+      {/* Background Floating Rose Particles Canvas */}
       <FloatingParticles />
 
       {/* Interactive Envelope Wax Seal Intro on First Load */}
@@ -61,14 +64,11 @@ export function App() {
         {/* Venue & Itinerary: Salón y Jardín Anturios */}
         <ReceptionSection />
 
-        {/* Dress Code Guidelines */}
-        <DressCodeSection />
-
         {/* Gallery & Moments */}
         <GallerySection />
 
-        {/* Gifts & Envelopes */}
-        <GiftsSection />
+        {/* Family Invitation Section */}
+        <FamilyInvitationSection />
 
         {/* Interactive RSVP Form & WhatsApp Connector */}
         <RsvpSection />

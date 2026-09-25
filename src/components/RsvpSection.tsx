@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { 
-  CheckCircle, 
-  Users, 
-  Phone, 
-  Music, 
-  Ticket, 
-  Settings, 
+import {
+  CheckCircle,
+  Users,
+  Phone,
+  Music,
   XCircle,
   MessageCircle
 } from 'lucide-react';
 import type { RsvpData } from '../types/rsvp';
-import { DigitalPassModal } from './DigitalPassModal';
 
 export const RsvpSection: React.FC = () => {
   const [fullName, setFullName] = useState('');
@@ -22,16 +19,9 @@ export const RsvpSection: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [songSuggestion, setSongSuggestion] = useState('');
-  
-  // Host WhatsApp number (can be edited by user or set to a default Mexico phone)
-  const [hostWhatsApp, setHostWhatsApp] = useState<string>(() => {
-    return localStorage.getItem('rsvp_host_whatsapp') || '7121330734';
-  });
-  const [showConfigNumber, setShowConfigNumber] = useState(false);
 
-  // Digital pass modal state
-  const [showPassModal, setShowPassModal] = useState(false);
-  const [currentRsvp, setCurrentRsvp] = useState<RsvpData | null>(null);
+  // Host WhatsApp number - fixed, cannot be modified
+  const hostWhatsApp = '527121381206';
 
   // Saved RSVPs in localStorage
   const [savedRsvps, setSavedRsvps] = useState<RsvpData[]>(() => {
@@ -45,45 +35,13 @@ export const RsvpSection: React.FC = () => {
 
   const [showGuestListModal, setShowGuestListModal] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem('rsvp_host_whatsapp', hostWhatsApp);
-  }, [hostWhatsApp]);
-
   const triggerCelebration = () => {
     confetti({
       particleCount: 120,
       spread: 80,
       origin: { y: 0.6 },
-      colors: ['#D4AF37', '#2C5E43', '#E5C07B', '#F18C8E'],
+      colors: ['#ec4899', '#f9a8d4', '#db2777', '#F18C8E'],
     });
-  };
-
-  const handleSaveAndGenerateTicket = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!fullName.trim()) {
-      alert('Por favor ingresa tu nombre completo.');
-      return;
-    }
-
-    const newRsvp: RsvpData = {
-      id: Date.now().toString(),
-      fullName: fullName.trim(),
-      attending,
-      guestsCount: attending ? guestsCount : 0,
-      guestNames: guestNames.trim(),
-      phone: phone.trim(),
-      message: message.trim(),
-      songSuggestion: songSuggestion.trim(),
-      timestamp: new Date().toLocaleString('es-MX'),
-    };
-
-    const updated = [newRsvp, ...savedRsvps];
-    setSavedRsvps(updated);
-    localStorage.setItem('lety_60_rsvps', JSON.stringify(updated));
-
-    setCurrentRsvp(newRsvp);
-    triggerCelebration();
-    setShowPassModal(true);
   };
 
   const handleSendViaWhatsApp = () => {
@@ -120,7 +78,7 @@ export const RsvpSection: React.FC = () => {
 
     window.open(waUrl, '_blank');
 
-    // Also store locally & create digital pass
+    // Store locally
     const newRsvp: RsvpData = {
       id: Date.now().toString(),
       fullName: fullName.trim(),
@@ -136,7 +94,6 @@ export const RsvpSection: React.FC = () => {
     const updated = [newRsvp, ...savedRsvps.filter(r => r.fullName !== newRsvp.fullName)];
     setSavedRsvps(updated);
     localStorage.setItem('lety_60_rsvps', JSON.stringify(updated));
-    setCurrentRsvp(newRsvp);
     triggerCelebration();
   };
 
@@ -153,9 +110,9 @@ export const RsvpSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="clay-pill px-5 py-2 inline-flex items-center gap-2 mb-3 text-amber-900 font-semibold text-xs tracking-widest uppercase"
+            className="clay-pill px-5 py-2 inline-flex items-center gap-2 mb-3 text-pink-900 font-semibold text-xs tracking-widest uppercase"
           >
-            <CheckCircle className="w-4 h-4 text-amber-600" />
+            <CheckCircle className="w-4 h-4 text-pink-600" />
             <span>Confirmación de Asistencia</span>
           </motion.div>
 
@@ -164,7 +121,7 @@ export const RsvpSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-serif-luxury text-3xl sm:text-5xl font-bold text-amber-950 mb-3"
+            className="font-serif-luxury text-3xl sm:text-5xl font-bold text-pink-950 mb-3"
           >
             ¿Nos acompañas a celebrar?
           </motion.h2>
@@ -180,7 +137,7 @@ export const RsvpSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Main Claymorphic RSVP Card */}
+        {/* Main RSVP Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -191,10 +148,10 @@ export const RsvpSection: React.FC = () => {
           <div className="gold-corner-tr" />
           <div className="gold-corner-bl" />
 
-          <form onSubmit={handleSaveAndGenerateTicket} className="space-y-6">
+          <div className="space-y-6">
             {/* Full Name */}
             <div>
-              <label className="block text-xs uppercase tracking-wider font-bold text-amber-950 mb-2">
+              <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
                 Nombre Completo <span className="text-rose-500">*</span>
               </label>
               <input
@@ -209,49 +166,48 @@ export const RsvpSection: React.FC = () => {
 
             {/* Attendance Toggle */}
             <div>
-              <label className="block text-xs uppercase tracking-wider font-bold text-amber-950 mb-2">
+              <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-3">
                 ¿Confirmas tu asistencia?
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-3 max-w-sm">
                 <button
                   type="button"
                   onClick={() => setAttending(true)}
-                  className={`p-4 rounded-2xl flex items-center justify-center gap-3 font-bold text-sm transition-all ${
+                  className={`flex items-center justify-center gap-2 py-3 px-4 rounded-2xl font-bold text-sm transition-all ${
                     attending
-                      ? 'bg-gradient-to-r from-emerald-50 to-emerald-100 border-2 border-emerald-500 text-emerald-950 shadow-md scale-[1.02]'
-                      : 'bg-stone-50 border border-stone-200 text-stone-600 hover:bg-stone-100'
+                      ? 'clay-btn-gold text-white shadow-lg scale-[1.02]'
+                      : 'clay-card-inset text-stone-600 hover:bg-pink-50'
                   }`}
                 >
-                  <CheckCircle className={`w-5 h-5 ${attending ? 'text-emerald-600' : 'text-stone-400'}`} />
-                  <span>¡Sí, con mucho gusto asistiré! 🎉</span>
+                  <CheckCircle className={`w-5 h-5 ${attending ? 'text-white' : 'text-emerald-500'}`} />
+                  <span>¡Sí, voy!</span>
                 </button>
-
                 <button
                   type="button"
                   onClick={() => setAttending(false)}
-                  className={`p-4 rounded-2xl flex items-center justify-center gap-3 font-bold text-sm transition-all ${
+                  className={`flex items-center justify-center gap-2 py-3 px-4 rounded-2xl font-bold text-sm transition-all ${
                     !attending
-                      ? 'bg-gradient-to-r from-rose-50 to-rose-100 border-2 border-rose-400 text-rose-950 shadow-md scale-[1.02]'
-                      : 'bg-stone-50 border border-stone-200 text-stone-600 hover:bg-stone-100'
+                      ? 'bg-rose-500 text-white shadow-lg scale-[1.02]'
+                      : 'clay-card-inset text-stone-600 hover:bg-rose-50'
                   }`}
                 >
-                  <XCircle className={`w-5 h-5 ${!attending ? 'text-rose-500' : 'text-stone-400'}`} />
-                  <span>Lamentablemente no podré 💌</span>
+                  <XCircle className={`w-5 h-5 ${!attending ? 'text-rose-200' : 'text-rose-400'}`} />
+                  <span>No podré ir</span>
                 </button>
               </div>
             </div>
 
-            {/* Guest count & names (Only shown if attending is true) */}
+            {/* Attending-only fields */}
             {attending && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="space-y-6 pt-2"
+                className="space-y-5"
               >
                 {/* Number of passes */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-bold text-amber-950 mb-2">
+                  <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
                     Número de pases / personas a confirmar
                   </label>
                   <div className="flex flex-wrap items-center gap-2">
@@ -263,7 +219,7 @@ export const RsvpSection: React.FC = () => {
                         className={`w-12 h-12 rounded-2xl font-extrabold text-base transition-all flex items-center justify-center ${
                           guestsCount === num
                             ? 'clay-btn-gold scale-110 shadow-lg text-white'
-                            : 'clay-card-inset text-amber-950 hover:bg-amber-100/50'
+                            : 'clay-card-inset text-pink-950 hover:bg-pink-100/50'
                         }`}
                       >
                         {num}
@@ -275,7 +231,7 @@ export const RsvpSection: React.FC = () => {
                 {/* Companion names */}
                 {guestsCount > 1 && (
                   <div>
-                    <label className="block text-xs uppercase tracking-wider font-bold text-amber-950 mb-2">
+                    <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
                       Nombres de tus acompañantes
                     </label>
                     <input
@@ -292,7 +248,7 @@ export const RsvpSection: React.FC = () => {
 
             {/* Phone Number */}
             <div>
-              <label className="block text-xs uppercase tracking-wider font-bold text-amber-950 mb-2">
+              <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
                 Teléfono de Contacto / WhatsApp (Opcional)
               </label>
               <div className="relative">
@@ -310,7 +266,7 @@ export const RsvpSection: React.FC = () => {
             {/* Song Suggestion */}
             {attending && (
               <div>
-                <label className="block text-xs uppercase tracking-wider font-bold text-amber-950 mb-2">
+                <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
                   ¿Qué canción te gustaría bailar o escuchar en la fiesta? 🎵
                 </label>
                 <div className="relative">
@@ -328,7 +284,7 @@ export const RsvpSection: React.FC = () => {
 
             {/* Message for Lety */}
             <div>
-              <label className="block text-xs uppercase tracking-wider font-bold text-amber-950 mb-2">
+              <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
                 Dedicatoria o Mensaje Especial para Lety 💌
               </label>
               <textarea
@@ -340,93 +296,56 @@ export const RsvpSection: React.FC = () => {
               />
             </div>
 
-            {/* Action Buttons: WhatsApp & Digital VIP Pass */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
+            {/* Single WhatsApp Button */}
+            <div className="pt-2">
               <button
                 type="button"
                 onClick={handleSendViaWhatsApp}
-                className="clay-btn clay-btn-whatsapp w-full sm:flex-1 py-4 text-base shadow-xl"
+                className="clay-btn clay-btn-whatsapp w-full py-4 text-base shadow-xl text-lg"
               >
-                <MessageCircle className="w-5 h-5" />
-                <span>Confirmar por WhatsApp</span>
+                <MessageCircle className="w-6 h-6" />
+                <span>Confirmar Asistencia por WhatsApp</span>
               </button>
-
-              <button
-                type="submit"
-                className="clay-btn clay-btn-gold w-full sm:flex-1 py-4 text-base shadow-xl"
-              >
-                <Ticket className="w-5 h-5" />
-                <span>Generar Pase Digital VIP</span>
-              </button>
+              <p className="text-center text-xs text-stone-500 mt-3">
+                Al presionar, se abrirá WhatsApp con tu confirmación lista para enviar 💬
+              </p>
             </div>
-          </form>
+          </div>
 
-          {/* Quick host configuration & summary footer */}
-          <div className="mt-8 pt-6 border-t border-amber-200/50 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500">
+          {/* Summary footer */}
+          <div className="mt-8 pt-6 border-t border-pink-200/50 flex flex-wrap items-center gap-3 text-xs text-stone-500">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-amber-900">
+              <span className="font-semibold text-pink-900">
                 Confirmados registrados en esta web:
               </span>
-              <span className="bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full">
+              <span className="bg-pink-100 text-pink-900 font-bold px-2 py-0.5 rounded-full">
                 {totalConfirmedGuests} personas ({savedRsvps.length} registros)
               </span>
               {savedRsvps.length > 0 && (
                 <button
                   onClick={() => setShowGuestListModal(true)}
-                  className="text-amber-700 underline font-medium hover:text-amber-900"
+                  className="text-pink-700 underline font-medium hover:text-pink-900"
                 >
                   Ver lista
                 </button>
               )}
             </div>
-
-            <button
-              onClick={() => setShowConfigNumber(!showConfigNumber)}
-              className="flex items-center gap-1 text-stone-500 hover:text-amber-800 transition-colors"
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span>Configurar WhatsApp de recepción</span>
-            </button>
           </div>
-
-          {/* Host WhatsApp number config drawer */}
-          {showConfigNumber && (
-            <div className="mt-4 p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-xs">
-              <label className="block font-bold text-amber-950 mb-1">
-                Número de WhatsApp para recibir confirmaciones (con código de país, ej. 52155...):
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={hostWhatsApp}
-                  onChange={(e) => setHostWhatsApp(e.target.value)}
-                  placeholder="5215512345678"
-                  className="clay-input text-xs py-2"
-                />
-                <button
-                  onClick={() => setShowConfigNumber(false)}
-                  className="clay-btn clay-btn-gold text-xs py-2 px-4 shrink-0"
-                >
-                  Guardar
-                </button>
-              </div>
-            </div>
-          )}
         </motion.div>
       </div>
 
-      {/* Guest List Summary Modal (for host) */}
+      {/* Guest List Modal */}
       {showGuestListModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <div className="clay-card p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b pb-3 mb-4">
-              <h3 className="font-bold text-lg text-amber-950 flex items-center gap-2">
-                <Users className="w-5 h-5 text-amber-700" />
+              <h3 className="font-bold text-lg text-pink-950 flex items-center gap-2">
+                <Users className="w-5 h-5 text-pink-700" />
                 <span>Lista de Confirmaciones</span>
               </h3>
               <button
                 onClick={() => setShowGuestListModal(false)}
-                className="text-stone-400 hover:text-stone-700"
+                className="text-stone-400 hover:text-stone-700 text-xl font-bold leading-none"
               >
                 ✕
               </button>
@@ -437,7 +356,7 @@ export const RsvpSection: React.FC = () => {
                 <div key={r.id} className="p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs">
                   <div className="flex justify-between items-start font-bold text-stone-900 mb-1">
                     <span>{r.fullName}</span>
-                    <span className={`px-2 py-0.5 rounded-full ${r.attending ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}`}>
+                    <span className={`px-2 py-0.5 rounded-full ${r.attending ? 'bg-rose-100 text-rose-800' : 'bg-stone-100 text-stone-600'}`}>
                       {r.attending ? `${r.guestsCount} pases` : 'No asistirá'}
                     </span>
                   </div>
@@ -460,13 +379,6 @@ export const RsvpSection: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Digital VIP Pass Modal */}
-      <DigitalPassModal
-        isOpen={showPassModal}
-        onClose={() => setShowPassModal(false)}
-        rsvpData={currentRsvp}
-      />
     </section>
   );
 };

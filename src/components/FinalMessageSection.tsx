@@ -17,7 +17,7 @@ export const FinalMessageSection: React.FC<FinalMessageSectionProps> = ({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.7 },
-      colors: ['#E5C07B', '#D4AF37', '#E0A96D', '#FF6B6B'],
+      colors: ['#ec4899', '#f9a8d4', '#db2777', '#FF6B6B'],
     });
   };
 
@@ -32,7 +32,6 @@ export const FinalMessageSection: React.FC<FinalMessageSectionProps> = ({
       try {
         await navigator.share(shareData);
       } catch {
-        // Fallback to copy
         copyUrl();
       }
     } else {
@@ -67,38 +66,38 @@ export const FinalMessageSection: React.FC<FinalMessageSectionProps> = ({
           <div className="gold-corner-bl" />
 
           {/* Floating heart icon with pulse */}
-          <div 
+          <div
             onClick={triggerHeartConfetti}
-            className="w-16 h-16 rounded-full bg-gradient-to-tr from-rose-400 to-amber-300 text-white flex items-center justify-center mx-auto mb-6 shadow-xl cursor-pointer transform hover:scale-110 active:scale-95 transition-all"
+            className="w-16 h-16 rounded-full bg-gradient-to-tr from-rose-400 to-pink-300 text-white flex items-center justify-center mx-auto mb-6 shadow-xl cursor-pointer transform hover:scale-110 active:scale-95 transition-all"
             title="Toca para enviar cariño"
           >
             <Heart className="w-8 h-8 fill-white" />
           </div>
 
-          <div className="font-script text-3xl sm:text-4xl text-amber-800 font-bold mb-3">
+          <div className="font-script text-3xl sm:text-4xl text-pink-800 font-bold mb-3">
             ¡Te esperamos!
           </div>
 
-          <h2 className="font-serif-luxury text-3xl sm:text-5xl font-bold text-amber-950 mb-6 leading-tight">
-            Una celebración hecha con el corazón
+          <h2 className="font-serif-luxury text-3xl sm:text-5xl font-bold text-pink-950 mb-6 leading-tight">
+            Una celebración con mucho cariño
           </h2>
 
-          {/* Sincere closing quote (exact from user prompt) */}
+          {/* Sincere closing quote */}
           <div className="space-y-4 text-stone-700 font-serif-luxury text-xl sm:text-2xl leading-relaxed italic max-w-2xl mx-auto mb-8">
             <p>
               &ldquo;Te esperamos con mucho cariño y entusiasmo. Me llena de emoción poder compartir este momento tan especial contigo.&rdquo;
             </p>
             <p>
-              &ldquo;Espero que disfrutes cada minuto y <strong className="text-amber-900 not-italic font-bold">por favor no faltes</strong>, porque sin tu compañía no sería igual de grandioso este momento de mi vida que Dios me ha permitido celebrar.&rdquo;
+              &ldquo;Espero que disfrutes cada minuto y <strong className="text-pink-900 not-italic font-bold">por favor no faltes</strong>, porque sin tu compañía no sería igual de grandioso este momento de mi vida que Dios me ha permitido celebrar.&rdquo;
             </p>
           </div>
 
           {/* Lety's Signature */}
           <div className="flex flex-col items-center justify-center my-6">
-            <span className="text-xs uppercase tracking-[0.25em] text-amber-900/80 font-bold mb-1">
+            <span className="text-xs uppercase tracking-[0.25em] text-pink-900/80 font-bold mb-1">
               Con inmenso cariño
             </span>
-            <div className="font-signature text-5xl sm:text-6xl text-amber-800">
+            <div className="font-signature text-5xl sm:text-6xl text-pink-800">
               Lety
             </div>
           </div>
@@ -130,7 +129,7 @@ export const FinalMessageSection: React.FC<FinalMessageSectionProps> = ({
               onClick={handleShare}
               className="clay-btn clay-btn-white text-sm sm:text-base px-6 py-3.5"
             >
-              {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4 text-amber-700" />}
+              {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4 text-pink-700" />}
               <span>{copiedLink ? '¡Enlace Copiado!' : 'Compartir Invitación'}</span>
             </button>
           </div>
@@ -138,8 +137,8 @@ export const FinalMessageSection: React.FC<FinalMessageSectionProps> = ({
 
         {/* Footer Credits */}
         <div className="mt-12 text-center text-xs text-stone-500 font-medium">
-          <p>Mis 60 Años • Lety Feregrino • Sábado 5 de Diciembre de 2026</p>
-          <p className="mt-1 text-stone-400">Hecho con amor para celebrar la vida ✨</p>
+          <p>Mis 60 Años · Lety Feregrino · Sábado 5 de Diciembre de 2026</p>
+          <p className="mt-1 text-stone-400">Hecho con mucho cariño para celebrar la vida ✨</p>
         </div>
       </div>
     </section>

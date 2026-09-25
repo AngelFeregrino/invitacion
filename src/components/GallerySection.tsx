@@ -10,7 +10,7 @@ export const GallerySection: React.FC = () => {
       caption: 'Por 60 años de vida, risas y bendiciones',
     },
     {
-      img: '/images/lety_portrait.jpg',
+      img: '/images/lety_retrato.jpeg',
       title: 'Dicha & Gratitud',
       caption: 'Celebrando cada vuelta al sol con amor',
     },
@@ -29,9 +29,9 @@ export const GallerySection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="clay-pill px-5 py-2 inline-flex items-center gap-2 mb-3 text-amber-900 font-semibold text-xs tracking-widest uppercase"
+            className="clay-pill px-5 py-2 inline-flex items-center gap-2 mb-3 text-pink-900 font-semibold text-xs tracking-widest uppercase"
           >
-            <Camera className="w-4 h-4 text-amber-600" />
+            <Camera className="w-4 h-4 text-pink-600" />
             <span>Memorias & Alegría</span>
           </motion.div>
 
@@ -40,7 +40,7 @@ export const GallerySection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-serif-luxury text-3xl sm:text-5xl font-bold text-amber-950 mb-3"
+            className="font-serif-luxury text-3xl sm:text-5xl font-bold text-pink-950 mb-3"
           >
             Celebrando la Vida
           </motion.h2>
@@ -75,7 +75,7 @@ export const GallerySection: React.FC = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-5 text-white">
-                  <div className="flex items-center gap-1.5 text-amber-300 text-xs font-bold uppercase tracking-wider mb-1">
+                  <div className="flex items-center gap-1.5 text-pink-300 text-xs font-bold uppercase tracking-wider mb-1">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{moment.title}</span>
                   </div>

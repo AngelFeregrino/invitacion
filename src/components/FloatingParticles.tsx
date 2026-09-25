@@ -21,7 +21,7 @@ export const FloatingParticles: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Particle system: gold sparkles and soft bokeh
+    // Particle system: rose petals and soft bokeh
     interface Particle {
       x: number;
       y: number;
@@ -33,11 +33,11 @@ export const FloatingParticles: React.FC = () => {
       color: string;
     }
 
-    const goldColors = [
-      'rgba(229, 192, 123, ',
-      'rgba(197, 155, 39, ',
-      'rgba(245, 230, 180, ',
-      'rgba(220, 180, 130, ',
+    const roseColors = [
+      'rgba(249, 168, 212, ',
+      'rgba(236, 72, 153, ',
+      'rgba(253, 207, 232, ',
+      'rgba(219, 39, 119, ',
     ];
 
     const particles: Particle[] = Array.from({ length: 38 }, () => ({
@@ -48,7 +48,7 @@ export const FloatingParticles: React.FC = () => {
       speedX: (Math.random() - 0.5) * 0.3,
       opacity: Math.random() * 0.6 + 0.2,
       opacitySpeed: (Math.random() * 0.01 + 0.005) * (Math.random() > 0.5 ? 1 : -1),
-      color: goldColors[Math.floor(Math.random() * goldColors.length)],
+      color: roseColors[Math.floor(Math.random() * roseColors.length)],
     }));
 
     const render = () => {
@@ -74,7 +74,7 @@ export const FloatingParticles: React.FC = () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `${p.color}${Math.max(0, p.opacity)})`;
         ctx.shadowBlur = 8;
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.5)';
+        ctx.shadowColor = 'rgba(236, 72, 153, 0.4)';
         ctx.fill();
       });
 
