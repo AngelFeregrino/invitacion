@@ -16,7 +16,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Background Image with Warm Gradient Fade */}
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-30 sm:opacity-40 mix-blend-multiply"
-        style={{ backgroundImage: 'url(/images/hero_bg.jpg)' }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/hero_bg.jpg)` }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#FFF5F8]/60 via-[#FFF5F8]/40 to-[#FFF5F8]" />
 

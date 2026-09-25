@@ -34,7 +34,7 @@ export const HeartfeltMessage: React.FC = () => {
                 {/* Clay Frame around photo */}
                 <div className="p-3 bg-gradient-to-b from-[#FFFDF9] to-[#fce7f3] rounded-3xl shadow-xl border border-pink-200/80">
                   <img
-                    src="/images/lety_retrato.jpeg"
+                    src={`${import.meta.env.BASE_URL}images/lety_retrato.jpeg`}
                     alt="Lety Feregrino - Festejada"
                     className="w-56 h-72 sm:w-64 sm:h-80 object-cover rounded-2xl shadow-inner transition-transform duration-500 group-hover:scale-[1.02]"
                     loading="lazy"

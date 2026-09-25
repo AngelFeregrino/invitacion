@@ -103,7 +103,7 @@ export const ReceptionSection: React.FC = () => {
         >
           <div className="relative h-64 sm:h-96 w-full overflow-hidden">
             <img
-              src="/images/salon.jpeg"
+              src={`${import.meta.env.BASE_URL}images/salon.jpeg`}
               alt="Salón y Jardín Anturios"
               className="w-full h-full object-cover brightness-95 hover:scale-105 transition-transform duration-700"
             />

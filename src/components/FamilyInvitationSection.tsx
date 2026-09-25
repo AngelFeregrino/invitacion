@@ -5,15 +5,15 @@ import { Heart, Flower2 } from 'lucide-react';
 export const FamilyInvitationSection: React.FC = () => {
   const familyImages = [
     {
-      src: '/images/fam1.jpeg',
+      src: `${import.meta.env.BASE_URL}images/fam1.jpeg`,
       alt: 'Familia Feregrino - Recuerdo familiar 1',
     },
     {
-      src: '/images/fam2.jpeg',
+      src: `${import.meta.env.BASE_URL}images/fam2.jpeg`,
       alt: 'Familia Feregrino - Recuerdo familiar 2',
     },
     {
-      src: '/images/fam3.jpeg',
+      src: `${import.meta.env.BASE_URL}images/fam3.jpeg`,
       alt: 'Familia Feregrino - Recuerdo familiar 3',
     },
   ];
