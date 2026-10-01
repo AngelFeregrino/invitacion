@@ -4,21 +4,17 @@ import confetti from 'canvas-confetti';
 import {
   CheckCircle,
   Users,
-  Phone,
-  Music,
   XCircle,
-  MessageCircle
+  MessageCircle,
+  Sparkles
 } from 'lucide-react';
 import type { RsvpData } from '../types/rsvp';
 
 export const RsvpSection: React.FC = () => {
   const [fullName, setFullName] = useState('');
   const [attending, setAttending] = useState<boolean>(true);
-  const [guestsCount, setGuestsCount] = useState<number>(2);
-  const [guestNames, setGuestNames] = useState('');
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState('');
-  const [songSuggestion, setSongSuggestion] = useState('');
+  const [adultsCount, setAdultsCount] = useState<number>(2);
+  const [kidsCount, setKidsCount] = useState<number>(0);
 
   // Host WhatsApp number - fixed, cannot be modified
   const hostWhatsApp = '527121381206';
@@ -50,6 +46,13 @@ export const RsvpSection: React.FC = () => {
       return;
     }
 
+    const totalPasses = adultsCount + kidsCount;
+
+    if (attending && totalPasses === 0) {
+      alert('Por favor selecciona al menos 1 pase para confirmar (adultos o niños).');
+      return;
+    }
+
     const attendingText = attending
       ? '¡Sí, confirmo mi asistencia con mucha emoción! 🎉'
       : 'Con mucho pesar no podré asistir, pero les envío un fuerte abrazo y mis mejores deseos 💌';
@@ -62,11 +65,9 @@ export const RsvpSection: React.FC = () => {
       '',
       `👤 *Invitado(a):* ${fullName.trim()}`,
       `💫 *Estado:* ${attendingText}`,
-      attending ? `🎟️ *Cantidad de Pases:* ${guestsCount} persona(s)` : '',
-      attending && guestNames.trim() ? `👥 *Acompañantes:* ${guestNames.trim()}` : '',
-      phone.trim() ? `📱 *Teléfono:* ${phone.trim()}` : '',
-      songSuggestion.trim() ? `🎵 *Canción para la fiesta:* ${songSuggestion.trim()}` : '',
-      message.trim() ? `\n💌 *Mensaje para Lety:*\n"${message.trim()}"` : '',
+      attending ? `🎟️ *Total de Pases:* ${totalPasses} persona(s)` : '',
+      attending ? `👨‍💼 *Adultos:* ${adultsCount}` : '',
+      attending ? `🧒 *Niños:* ${kidsCount}` : '',
       '',
       '¡Muchas gracias por la invitación! ✨',
     ].filter(Boolean).join('\n');
@@ -83,11 +84,9 @@ export const RsvpSection: React.FC = () => {
       id: Date.now().toString(),
       fullName: fullName.trim(),
       attending,
-      guestsCount: attending ? guestsCount : 0,
-      guestNames: guestNames.trim(),
-      phone: phone.trim(),
-      message: message.trim(),
-      songSuggestion: songSuggestion.trim(),
+      adultsCount: attending ? adultsCount : 0,
+      kidsCount: attending ? kidsCount : 0,
+      guestsCount: attending ? totalPasses : 0,
       timestamp: new Date().toLocaleString('es-MX'),
     };
 
@@ -99,7 +98,7 @@ export const RsvpSection: React.FC = () => {
 
   const totalConfirmedGuests = savedRsvps
     .filter((r) => r.attending)
-    .reduce((acc, curr) => acc + (curr.guestsCount || 1), 0);
+    .reduce((acc, curr) => acc + (curr.guestsCount || ((curr.adultsCount || 0) + (curr.kidsCount || 0)) || 1), 0);
 
   return (
     <section id="confirmacion" className="py-16 sm:py-24 px-4 relative">
@@ -197,111 +196,81 @@ export const RsvpSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Attending-only fields */}
+            {/* Attending-only: Adults and Kids Selects */}
             {attending && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="space-y-5"
+                className="space-y-4 pt-1"
               >
-                {/* Number of passes */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
+                  <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-3">
                     Número de pases / personas a confirmar
                   </label>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {[1, 2, 3, 4, 5, 6].map((num) => (
-                      <button
-                        key={num}
-                        type="button"
-                        onClick={() => setGuestsCount(num)}
-                        className={`w-12 h-12 rounded-2xl font-extrabold text-base transition-all flex items-center justify-center ${
-                          guestsCount === num
-                            ? 'clay-btn-gold scale-110 shadow-lg text-white'
-                            : 'clay-card-inset text-pink-950 hover:bg-pink-100/50'
-                        }`}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Select Adultos */}
+                    <div>
+                      <label htmlFor="select-adults" className="block text-xs font-semibold text-pink-900 mb-1.5 flex items-center gap-1.5">
+                        <Users className="w-4 h-4 text-pink-600" />
+                        <span>Adultos</span>
+                      </label>
+                      <select
+                        id="select-adults"
+                        value={adultsCount}
+                        onChange={(e) => setAdultsCount(Number(e.target.value))}
+                        className="clay-input cursor-pointer font-bold text-pink-950 bg-white/90"
                       >
-                        {num}
-                      </button>
-                    ))}
+                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                          <option key={num} value={num}>
+                            {num} {num === 1 ? 'Adulto' : 'Adultos'}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Select Niños */}
+                    <div>
+                      <label htmlFor="select-kids" className="block text-xs font-semibold text-pink-900 mb-1.5 flex items-center gap-1.5">
+                        <Users className="w-4 h-4 text-pink-600" />
+                        <span>Niños</span>
+                      </label>
+                      <select
+                        id="select-kids"
+                        value={kidsCount}
+                        onChange={(e) => setKidsCount(Number(e.target.value))}
+                        className="clay-input cursor-pointer font-bold text-pink-950 bg-white/90"
+                      >
+                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                          <option key={num} value={num}>
+                            {num} {num === 1 ? 'Niño' : 'Niños'}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Resumen dinámico de pases */}
+                  <div className="mt-3 clay-card-inset p-3 rounded-2xl flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-semibold text-pink-900 bg-pink-100/50 border border-pink-200/50">
+                    <span className="flex items-center gap-1.5">
+                      <Sparkles className="w-4 h-4 text-pink-600" />
+                      <span>Total de pases seleccionados:</span>
+                    </span>
+                    <span className="font-extrabold text-pink-700 bg-white/90 px-3.5 py-1 rounded-full shadow-xs">
+                      {adultsCount + kidsCount} {adultsCount + kidsCount === 1 ? 'persona' : 'personas'} ({adultsCount} {adultsCount === 1 ? 'adulto' : 'adultos'}, {kidsCount} {kidsCount === 1 ? 'niño' : 'niños'})
+                    </span>
                   </div>
                 </div>
-
-                {/* Companion names */}
-                {guestsCount > 1 && (
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
-                      Nombres de tus acompañantes
-                    </label>
-                    <input
-                      type="text"
-                      value={guestNames}
-                      onChange={(e) => setGuestNames(e.target.value)}
-                      placeholder="Ej. Roberto y Sofía"
-                      className="clay-input"
-                    />
-                  </div>
-                )}
               </motion.div>
             )}
-
-            {/* Phone Number */}
-            <div>
-              <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
-                Teléfono de Contacto / WhatsApp (Opcional)
-              </label>
-              <div className="relative">
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Ej. 55 1234 5678"
-                  className="clay-input pl-10"
-                />
-                <Phone className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              </div>
-            </div>
-
-            {/* Song Suggestion */}
-            {attending && (
-              <div>
-                <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
-                  ¿Qué canción te gustaría bailar o escuchar en la fiesta? 🎵
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={songSuggestion}
-                    onChange={(e) => setSongSuggestion(e.target.value)}
-                    placeholder="Ej. Vivir Mi Vida - Marc Anthony"
-                    className="clay-input pl-10"
-                  />
-                  <Music className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                </div>
-              </div>
-            )}
-
-            {/* Message for Lety */}
-            <div>
-              <label className="block text-xs uppercase tracking-wider font-bold text-pink-950 mb-2">
-                Dedicatoria o Mensaje Especial para Lety 💌
-              </label>
-              <textarea
-                rows={3}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Escribe tus buenos deseos y felicitaciones..."
-                className="clay-input resize-none"
-              />
-            </div>
 
             {/* Single WhatsApp Button */}
             <div className="pt-2">
               <button
                 type="button"
                 onClick={handleSendViaWhatsApp}
-                className="clay-btn clay-btn-whatsapp w-full py-4 text-base shadow-xl text-lg"
+                className="clay-btn clay-btn-whatsapp w-full py-4 text-base shadow-xl text-lg font-bold"
               >
                 <MessageCircle className="w-6 h-6" />
                 <span>Confirmar Asistencia por WhatsApp</span>
@@ -352,20 +321,24 @@ export const RsvpSection: React.FC = () => {
             </div>
 
             <div className="space-y-3">
-              {savedRsvps.map((r) => (
-                <div key={r.id} className="p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs">
-                  <div className="flex justify-between items-start font-bold text-stone-900 mb-1">
-                    <span>{r.fullName}</span>
-                    <span className={`px-2 py-0.5 rounded-full ${r.attending ? 'bg-rose-100 text-rose-800' : 'bg-stone-100 text-stone-600'}`}>
-                      {r.attending ? `${r.guestsCount} pases` : 'No asistirá'}
-                    </span>
+              {savedRsvps.map((r) => {
+                const total = r.guestsCount ?? ((r.adultsCount ?? 0) + (r.kidsCount ?? 0));
+                return (
+                  <div key={r.id} className="p-3 rounded-xl bg-stone-50 border border-stone-200 text-xs">
+                    <div className="flex justify-between items-start font-bold text-stone-900 mb-1">
+                      <span>{r.fullName}</span>
+                      <span className={`px-2 py-0.5 rounded-full ${r.attending ? 'bg-rose-100 text-rose-800' : 'bg-stone-100 text-stone-600'}`}>
+                        {r.attending ? `${total} pases` : 'No asistirá'}
+                      </span>
+                    </div>
+                    {r.attending && (
+                      <div className="text-stone-600 font-medium">
+                        Adultos: {r.adultsCount ?? total} · Niños: {r.kidsCount ?? 0}
+                      </div>
+                    )}
                   </div>
-                  {r.guestNames && <div className="text-stone-600">Acompañantes: {r.guestNames}</div>}
-                  {r.phone && <div className="text-stone-500">Tel: {r.phone}</div>}
-                  {r.songSuggestion && <div className="text-stone-500">Canción: {r.songSuggestion}</div>}
-                  {r.message && <div className="italic text-stone-600 mt-1">"{r.message}"</div>}
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="mt-4 pt-3 border-t text-right">

@@ -5,9 +5,9 @@ import { Camera, Sparkles } from 'lucide-react';
 export const GallerySection: React.FC = () => {
   const moments = [
     {
-      img: `${import.meta.env.BASE_URL}images/toast.jpg`,
-      title: 'Brindis de Celebración',
-      caption: 'Por 60 años de vida, risas y bendiciones',
+      img: `${import.meta.env.BASE_URL}images/misa.jpeg`,
+      title: 'Misa de Acción de Gracias',
+      caption: 'Dando gracias a Dios por 60 años de bendiciones y vida',
     },
     {
       img: `${import.meta.env.BASE_URL}images/lety_retrato.jpeg`,
@@ -15,9 +15,9 @@ export const GallerySection: React.FC = () => {
       caption: 'Celebrando cada vuelta al sol con amor',
     },
     {
-      img: `${import.meta.env.BASE_URL}images/venue.jpg`,
-      title: 'Jardín & Velada Mágica',
-      caption: 'El escenario perfecto para reencontrarnos',
+      img: `${import.meta.env.BASE_URL}images/salon2.jpeg`,
+      title: 'Sagrados Alimentos',
+      caption: 'Compartiendo la mesa y celebrando momentos inolvidables',
     },
   ];
 

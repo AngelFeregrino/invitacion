@@ -1,38 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { Volume2, VolumeX, Music, Sparkles } from 'lucide-react';
-import { ambientMusic } from '../utils/audioSynth';
+import { backgroundMusic } from '../utils/audioPlayer';
 
 interface FloatingMusicPlayerProps {
   autoPlayStarted?: boolean;
 }
 
 export const FloatingMusicPlayer: React.FC<FloatingMusicPlayerProps> = ({ autoPlayStarted }) => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [volume, setVolume] = useState<number>(0.5);
+  const [isPlaying, setIsPlaying] = useState<boolean>(backgroundMusic.isPlaying());
+  const [volume, setVolume] = useState<number>(backgroundMusic.getVolume());
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
   useEffect(() => {
+    const unsubscribe = backgroundMusic.subscribe((playing) => {
+      setIsPlaying(playing);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
     if (autoPlayStarted && !isPlaying) {
-      ambientMusic.play();
-      setIsPlaying(true);
+      backgroundMusic.play();
     }
   }, [autoPlayStarted]);
 
   const handleToggle = () => {
-    const active = ambientMusic.toggle();
-    setIsPlaying(active);
+    backgroundMusic.toggle();
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseFloat(e.target.value);
     setVolume(val);
-    ambientMusic.setVolume(val);
+    backgroundMusic.setVolume(val);
     if (val === 0 && isPlaying) {
-      ambientMusic.pause();
-      setIsPlaying(false);
+      backgroundMusic.pause();
     } else if (val > 0 && !isPlaying) {
-      ambientMusic.play();
-      setIsPlaying(true);
+      backgroundMusic.play();
     }
   };
 

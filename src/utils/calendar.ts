@@ -6,8 +6,8 @@ export const createGoogleCalendarUrl = () => {
     "¡Acompáñame a celebrar 60 años de vida, bendiciones y alegría! Su presencia será el mejor regalo. Salón y Jardín Anturios."
   );
   const location = encodeURIComponent("Salón y Jardín Anturios, México");
-  // 2026-12-05 15:00:00 to 2026-12-06 02:00:00
-  const dates = "20261205T210000Z/20261206T080000Z";
+  // 2026-12-05 12:00:00 to 2026-12-06 02:00:00
+  const dates = "20261205T180000Z/20261206T080000Z";
   
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
 };
@@ -22,7 +22,7 @@ BEGIN:VEVENT
 SUMMARY:🎉 Mis 60 Años - Celebración de Lety Feregrino
 DESCRIPTION:¡Acompáñame a celebrar 60 años de vida, bendiciones y alegría! Su presencia será el mejor regalo.
 LOCATION:Salón y Jardín Anturios
-DTSTART:20261205T150000
+DTSTART:20261205T120000
 DTEND:20261206T020000
 STATUS:CONFIRMED
 SEQUENCE:0

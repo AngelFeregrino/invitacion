@@ -36,8 +36,8 @@ export const ReceptionSection: React.FC = () => {
 
   const itinerary = [
     {
-      time: "12:00 hrs",
-      title: "Misa de Acción de Gracias",
+      time: "12:00 p.m.",
+      title: "Misa",
       desc: "Parroquia de San José · El Sagrario · Portal Reforma 104, Col. Centro, C.P. 50000, Toluca, México.",
       icon: Church,
       mapLink: churchMapsUrl,
@@ -45,30 +45,30 @@ export const ReceptionSection: React.FC = () => {
       onViewMapTab: () => setActiveMap('iglesia'),
     },
     {
-      time: "15:00 hrs",
-      title: "Recepción & Cóctel de Bienvenida",
-      desc: "Llegada al jardín, bebidas refrescantes y convivencia con amigos y familia.",
-      icon: Wine,
+      time: "2:00 p.m.",
+      title: "Recepción",
+      desc: "Llegada a Salón y Jardín Anturios y bienvenida a los invitados.",
+      icon: Sparkles,
       mapLink: salonMapsUrl,
       mapLabel: "Abrir mapa del Salón",
       onViewMapTab: () => setActiveMap('salon'),
     },
     {
-      time: "16:30 hrs",
-      title: "Banquete de Gala & Brindis",
-      desc: "Deliciosa comida en honor a la festejada y brindis por sus 60 años de vida.",
+      time: "3:00 p.m.",
+      title: "Banquete",
+      desc: "Disfrutando de los sagrados alimentos en honor a Lety.",
       icon: Utensils,
     },
     {
-      time: "18:30 hrs",
-      title: "Momentos Emotivos & Recuerdos",
-      desc: "Palabras especiales, semblanza fotográfica y agradecimiento.",
-      icon: Sparkles,
+      time: "4:00 p.m.",
+      title: "Momentos emotivos y brindis",
+      desc: "Palabras especiales de felicitación y brindis en honor a sus 60 años.",
+      icon: Wine,
     },
     {
-      time: "19:30 hrs",
-      title: "Fiesta, Música en Vivo & Baile",
-      desc: "¡Apertura de la pista de baile con toda la actitud para divertirse!",
+      time: "4:30 p.m.",
+      title: "Fiesta, música y baile",
+      desc: "¡Música para bailar, convivir y divertirse con toda la alegría!",
       icon: PartyPopper,
     },
   ];
@@ -146,7 +146,7 @@ export const ReceptionSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-bold text-pink-950 text-base sm:text-lg">Salón y Jardín Anturios</div>
-                  <div className="text-xs sm:text-sm text-stone-600">Recepción & Fiesta · Sábado 5 de Diciembre · 15:00 hrs</div>
+                  <div className="text-xs sm:text-sm text-stone-600">Recepción & Fiesta · Sábado 5 de Diciembre · 2:00 p.m.</div>
                 </div>
               </div>
 
@@ -190,7 +190,7 @@ export const ReceptionSection: React.FC = () => {
                   <Church className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-xs font-bold text-pink-950 block">Misa de Acción de Gracias (12:00 hrs)</span>
+                  <span className="text-xs font-bold text-pink-950 block">Misa de Acción de Gracias (12:00 p.m.)</span>
                   <span className="text-[11px] text-stone-500">Parroquia de San José · El Sagrario, Portal Reforma 104, Toluca Centro</span>
                 </div>
               </div>
@@ -339,15 +339,15 @@ export const ReceptionSection: React.FC = () => {
                   <div>
                     <div className="font-bold text-pink-950 text-sm flex items-center gap-1.5 mb-0.5">
                       <Wine className="w-4 h-4 text-pink-700" />
-                      <span>Salón y Jardín Anturios · 15:00 hrs</span>
+                      <span>Salón y Jardín Anturios · 2:00 p.m.</span>
                     </div>
-                    <p className="text-stone-600">Recepción, comida, brindis y fiesta de celebración.</p>
+                    <p className="text-stone-600">Recepción, banquete, brindis y fiesta de celebración.</p>
                   </div>
                 ) : (
                   <div>
                     <div className="font-bold text-pink-950 text-sm flex items-center gap-1.5 mb-0.5">
                       <Church className="w-4 h-4 text-pink-700" />
-                      <span>Parroquia de San José El Sagrario · 12:00 hrs</span>
+                      <span>Parroquia de San José El Sagrario · 12:00 p.m.</span>
                     </div>
                     <p className="text-stone-600">Portal Reforma 104, Col. Centro, C.P. 50000, Toluca, México.</p>
                   </div>

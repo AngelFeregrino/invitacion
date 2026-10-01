@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { Sparkles, Heart, MailOpen, ChevronRight } from 'lucide-react';
-import { ambientMusic } from '../utils/audioSynth';
+import { backgroundMusic } from '../utils/audioPlayer';
 
 interface EnvelopeIntroProps {
   onOpen: () => void;
@@ -16,7 +16,7 @@ export const EnvelopeIntro: React.FC<EnvelopeIntroProps> = ({ onOpen }) => {
     if (isOpening || isOpen) return;
     setIsOpening(true);
 
-    ambientMusic.play();
+    backgroundMusic.play();
 
     const count = 160;
     const defaults = {

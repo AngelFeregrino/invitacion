@@ -11,8 +11,8 @@ interface TimeLeft {
 }
 
 export const CountdownSection: React.FC = () => {
-  // Target: Saturday, December 5, 2026, 15:00:00 (CDMX / Local)
-  const targetDate = new Date('2026-12-05T15:00:00').getTime();
+  // Target: Saturday, December 5, 2026, 12:00:00 (CDMX / Local)
+  const targetDate = new Date('2026-12-05T12:00:00').getTime();
 
   const calculateTimeLeft = (): TimeLeft => {
     const now = new Date().getTime();

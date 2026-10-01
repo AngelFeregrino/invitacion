@@ -2,11 +2,13 @@ export interface RsvpData {
   id: string;
   fullName: string;
   attending: boolean;
+  adultsCount: number;
+  kidsCount: number;
   guestsCount: number;
-  guestNames: string;
-  phone: string;
-  message: string;
-  songSuggestion: string;
+  guestNames?: string;
+  phone?: string;
+  message?: string;
+  songSuggestion?: string;
   timestamp: string;
 }
 
